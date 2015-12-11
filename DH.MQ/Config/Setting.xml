@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<XMLConfig>
+  <VHost>192.168.1.126</VHost>
+  <IsAck>true</IsAck>
+  <IsDurability>true</IsDurability>
+  <User>admin</User>
+  <PWD>admin</PWD>
+  <QueueName>lu9.order</QueueName>
+  <RoutingKey>lu9</RoutingKey>
+  <Exchange>lu9.rabbitMQ</Exchange>
+  <Type>direct</Type>
+</XMLConfig> 
