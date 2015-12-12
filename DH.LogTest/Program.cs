@@ -35,7 +35,9 @@ namespace DH.LogTest
             //ILog log = new Log4NetWrapper(GetType());
 
         
-            ILog log = LogManager.GetLogger(GetType());
+           // ILog log = LogManager.GetLogger(GetType());
+
+            ILog log = LogManager.GetLogger("loginfo");
 
 
             log.Debug(message);
