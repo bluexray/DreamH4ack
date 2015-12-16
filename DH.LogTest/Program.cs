@@ -16,6 +16,8 @@ namespace DH.LogTest
             Program p = new Program();
             p.logtest();
 
+            Console.ReadKey();
+
         }
 
         public void logtest()
@@ -26,6 +28,8 @@ namespace DH.LogTest
             //默认为在web。config中配置,当传入true的时候
             LogManager.LogFactory = new Log4NetFactory(filename);
 
+            //LogManager.LogFactory = new Log4NetFactory();
+
 
 
             string message = "Error Message";
@@ -34,10 +38,19 @@ namespace DH.LogTest
 
             //ILog log = new Log4NetWrapper(GetType());
 
-        
-           // ILog log = LogManager.GetLogger(GetType());
+
+            //ILog log = LogManager.GetLogger(GetType());
 
             ILog log = LogManager.GetLogger("loginfo");
+
+            log.Debug(new
+            {
+                application_name ="logtest",
+                Type = "Request",
+                Method = "test",
+                Level = "Debug",
+                Message=message
+            });
 
 
             log.Debug(message);

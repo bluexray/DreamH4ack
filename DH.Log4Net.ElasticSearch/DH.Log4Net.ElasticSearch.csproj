@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{71C83D9B-69D4-4DFB-B15F-C455B6372A7F}</ProjectGuid>
+    <ProjectGuid>{550152CA-E1E5-4642-9662-EE3E7085E40F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DH.Log4Net</RootNamespace>
-    <AssemblyName>DH.Log4Net</AssemblyName>
+    <RootNamespace>DH.Log4Net.ElasticSearch</RootNamespace>
+    <AssemblyName>DH.Log4Net.ElasticSearch</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,9 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+    <Reference Include="log4net">
       <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
-      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -44,23 +43,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomLayout.cs" />
-    <Compile Include="Log4NetFactory.cs" />
-    <Compile Include="Log4NetWrapper.cs" />
-    <Compile Include="LogMessage.cs" />
-    <Compile Include="MessageLog.cs" />
+    <Compile Include="ElasticSearchAppender.cs" />
+    <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="Infrastructure\AnonymousDisposable.cs" />
+    <Compile Include="Infrastructure\Clock.cs" />
+    <Compile Include="Infrastructure\HttpClient.cs" />
+    <Compile Include="Infrastructure\Pair.cs" />
+    <Compile Include="Models\JsonSerializableException.cs" />
+    <Compile Include="Models\LogEvent.cs" />
+    <Compile Include="Models\Uri.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TraceId.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="log4net.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DH.Core\DH.Core.csproj">
-      <Project>{d897790d-749a-49cc-994b-9e45b07c49f2}</Project>
-      <Name>DH.Core</Name>
-    </ProjectReference>
+    <Compile Include="Repository.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
