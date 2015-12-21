@@ -33,6 +33,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Third-source", "Third-sourc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elasticsearch.Net", "Elasticsearch.Net\Elasticsearch.Net.csproj", "{E97CCF40-0BA6-43FE-9F2D-58D454134088}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{043FA206-77C1-45E1-B065-5B694DE7558D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{E97CCF40-0BA6-43FE-9F2D-58D454134088}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E97CCF40-0BA6-43FE-9F2D-58D454134088}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E97CCF40-0BA6-43FE-9F2D-58D454134088}.Release|Any CPU.Build.0 = Release|Any CPU
+		{043FA206-77C1-45E1-B065-5B694DE7558D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{043FA206-77C1-45E1-B065-5B694DE7558D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{043FA206-77C1-45E1-B065-5B694DE7558D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{043FA206-77C1-45E1-B065-5B694DE7558D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -104,5 +110,6 @@ Global
 		{4266FAF2-B907-43D2-93B1-ADC83B661A4E} = {717A407A-A668-4EF1-9232-148B4D0048A4}
 		{5796A422-C974-4D9F-9942-A533E283C4A7} = {717A407A-A668-4EF1-9232-148B4D0048A4}
 		{E97CCF40-0BA6-43FE-9F2D-58D454134088} = {A706A1E3-77B7-4E40-A77A-F98C6C8520B7}
+		{043FA206-77C1-45E1-B065-5B694DE7558D} = {28F1F2B6-FBEB-4A68-B4D2-4CA188B623FA}
 	EndGlobalSection
 EndGlobal

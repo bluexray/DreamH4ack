@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Web;
+
+
 using Elasticsearch.Net;
 using NLog.Common;
 using NLog.Config;
@@ -56,11 +59,15 @@ namespace DH.Nlog.ElasticSearch
         {
             base.InitializeTarget();
             string text = this.GetConnectionString(this.ConnectionStringName) ?? this.Uri;
-            IEnumerable<Uri> enumerable = from url in text.Split(new char[]
-            {
-                ','
-            })
-                                          select new Uri(url);
+
+            var u = new Uri(text);
+
+            List<Uri> enumerable = new List<Uri>();
+
+            enumerable.Add(u);
+
+            //IEnumerable<Uri> enumerable = from url in text.Split(',')
+            //                              select new Uri(url);
 
             //var host = text.Split(',').ToList<Uri>();
 
@@ -87,12 +94,18 @@ namespace DH.Nlog.ElasticSearch
             {
                 Dictionary<string, object> dictionary = new Dictionary<string, object>();
                 dictionary.Add("@timestamp", current.TimeStamp);
-                dictionary.Add("level", current.Level.Name);
+                dictionary.Add("level", current.Level.Name.ToUpper());
                 if (current.Exception != null)
                 {
                     dictionary.Add("exception", current.Exception.ToString());
                 }
-                dictionary.Add("message", this.Layout.Render(current));
+                dictionary.Add("APPID", APPID);
+                dictionary.Add("applicationName", current.LoggerName);
+                dictionary.Add("message", current.Message);
+                dictionary.Add("Stack", current.StackTrace) ;
+                
+                
+                //dictionary.Add("message", this.Layout.Render(current));
                 foreach (ElasticSearchField current2 in this.Fields)
                 {
                     string text = current2.Layout.Render(current);
@@ -231,6 +244,13 @@ namespace DH.Nlog.ElasticSearch
 
             get;
 
+            set;
+        }
+
+
+        public string APPID
+        {
+            get;
             set;
         }
 

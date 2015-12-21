@@ -20,6 +20,8 @@ namespace DH.Nlog.ElasticSearch
 
         public Type LayoutType { get; set; }
 
+        public string APPID { get; set; }
+
         public override string ToString()
         {
             return string.Format("Name: {0}, LayoutType: {1}, Layout: {2}", Name, LayoutType, Layout);
