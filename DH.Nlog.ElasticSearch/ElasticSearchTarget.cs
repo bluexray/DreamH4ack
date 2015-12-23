@@ -15,11 +15,11 @@ using NLog;
 
 namespace DH.Nlog.ElasticSearch
 {
-    // Token: 0x02000004 RID: 4
+    
     [Target("ElasticSearch")]
     public class ElasticSearchTarget : TargetWithLayout
     {
-        // Token: 0x0600001A RID: 26 RVA: 0x000021D8 File Offset: 0x000003D8
+        
         public ElasticSearchTarget()
         {
             this.Uri = "http://localhost:9200";
@@ -248,6 +248,7 @@ namespace DH.Nlog.ElasticSearch
         }
 
 
+        //用来区分不同的程序域
         public string APPID
         {
             get;
