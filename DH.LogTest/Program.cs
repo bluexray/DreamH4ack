@@ -17,8 +17,8 @@ namespace DH.LogTest
         {
 
 
-            //ConfigurationItemFactory.Default.Targets
-            //                .RegisterDefinition("ElasticSearch", typeof(DH.Nlog.ElasticSearch.ElasticSearchTarget));
+            ConfigurationItemFactory.Default.Targets
+                            .RegisterDefinition("ElasticSearch", typeof(DH.Nlog.ElasticSearch.ElasticSearchTarget));
 
 
 
