@@ -93,7 +93,8 @@ namespace DH.Nlog.ElasticSearch
             foreach (LogEventInfo current in enumerable)
             {
                 Dictionary<string, object> dictionary = new Dictionary<string, object>();
-                dictionary.Add("@timestamp", current.TimeStamp);
+                //dictionary.Add("@timestamp", current.TimeStamp);
+                dictionary.Add("@timestamp",DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
                 dictionary.Add("level", current.Level.Name.ToUpper());
                 if (current.Exception != null)
                 {

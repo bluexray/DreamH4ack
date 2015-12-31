@@ -47,6 +47,16 @@ namespace DH.Authorization.Server.Providers
             string clientId;
             string clientSecret;
             context.TryGetBasicCredentials(out clientId, out clientSecret);
+
+            //http://localhost:48339/token
+            //grant_type=client_credentials&client_id=irving&client_secret=123456
+            //grant_type=client_credentials&client_id=irving&client_secret=123456&scope=user order
+            /*
+            grant_type     授与方式（固定为 “client_credentials”）
+            client_id 	   分配的调用oauth的应用端ID
+            client_secret  分配的调用oaut的应用端Secret
+            scope 	       授权权限。以空格分隔的权限列表，若不传递此参数，代表请求用户的默认权限
+            */
             var clientValid = await _clientAuthorizationService.ValidateClientAuthorizationSecretAsync(clientId, clientSecret);
             if (!clientValid)
             {
@@ -103,6 +113,43 @@ namespace DH.Authorization.Server.Providers
                   return base.ValidateTokenRequest(context);
               }
         */
+
+
+        /// <summary>
+        /// 客户端授权[生成access token]
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
+        public override Task GrantClientCredentials(OAuthGrantClientCredentialsContext context)
+        {
+            /*
+               var client = _oauthClientService.GetClient(context.ClientId);
+               claimsIdentity.AddClaim(new Claim(ClaimTypes.Name, client.ClientName));
+             */
+            //验证权限
+            //int scopeCount = context.Scope.Count;
+            //if (scopeCount > 0)
+            //{
+            //    string name = context.Scope[0].ToString();
+            //}
+            //默认权限
+            var claimsIdentity = new ClaimsIdentity(context.Options.AuthenticationType);
+            //!!!
+            claimsIdentity.AddClaim(new Claim(ClaimTypes.Name, context.ClientId));
+            var props = new AuthenticationProperties(new Dictionary<string, string> {
+                            {
+                                "client_id",context.ClientId
+                            },
+                            {
+                                "scope",string.Join(" ",context.Scope)
+                            }
+                        });
+            var ticket = new AuthenticationTicket(claimsIdentity, props);
+            context.Validated(ticket);
+            return base.GrantClientCredentials(context);
+        }
+
+
 
         /// <summary>
         /// 验证持有 refresh token 的客户端

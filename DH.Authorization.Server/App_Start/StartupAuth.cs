@@ -5,14 +5,15 @@ using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Infrastructure;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
+using System.Web.Http;
 
-[assembly: OwinStartup(typeof(DH.Authorization.Server.App_Start.Startup))]
+[assembly: OwinStartup(typeof(DH.Authorization.Server.Startup))]
 
-namespace DH.Authorization.Server.App_Start
+namespace DH.Authorization.Server
 {
-    public class Startup
+    public partial class Startup
     {
-        public void Configuration(IAppBuilder app)
+        public void ConfigureAuth(IAppBuilder app)
         {
 
             app.UseOAuthAuthorizationServer(new OAuthAuthorizationServerOptions()
