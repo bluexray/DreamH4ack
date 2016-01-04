@@ -7,6 +7,9 @@ using System.Web;
 
 
 using Elasticsearch.Net;
+using Elasticsearch.Net.Connection;
+using Elasticsearch.Net.ConnectionPool;
+using Elasticsearch.Net.Serialization;
 using NLog.Common;
 using NLog.Config;
 using NLog.Layouts;
