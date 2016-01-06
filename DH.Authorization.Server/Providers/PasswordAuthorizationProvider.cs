@@ -36,6 +36,10 @@ namespace DH.Authorization.Server.Providers
             _accountService = accountService;
         }
 
+        public PasswordAuthorizationProvider()
+        {
+        }
+
         /// <summary>
         /// 验证客户端 [Authorization Basic Base64(clientId:clientSecret)|Authorization: Basic 5zsd8ewF0MqapsWmDwFmQmeF0Mf2gJkW]
         /// </summary>
@@ -46,24 +50,32 @@ namespace DH.Authorization.Server.Providers
             //validate client credentials should be stored securely (salted, hashed, iterated)
             string clientId;
             string clientSecret;
-            context.TryGetBasicCredentials(out clientId, out clientSecret);
+            //context.TryGetBasicCredentials(out clientId, out clientSecret);
 
             //http://localhost:48339/token
-            //grant_type=client_credentials&client_id=irving&client_secret=123456
-            //grant_type=client_credentials&client_id=irving&client_secret=123456&scope=user order
+            //grant_type=client_credentials&client_id=bluexray&client_secret=123456
+            //grant_type=client_credentials&client_id=bluexray&client_secret=123456&scope=user order
             /*
             grant_type     授与方式（固定为 “client_credentials”）
             client_id 	   分配的调用oauth的应用端ID
             client_secret  分配的调用oaut的应用端Secret
             scope 	       授权权限。以空格分隔的权限列表，若不传递此参数，代表请求用户的默认权限
             */
-            var clientValid = await _clientAuthorizationService.ValidateClientAuthorizationSecretAsync(clientId, clientSecret);
-            if (!clientValid)
+            if (context.TryGetBasicCredentials(out clientId, out clientSecret) ||
+                context.TryGetFormCredentials(out clientId, out clientSecret))
             {
-                //context.Rejected();
-                context.SetError("Invalid Client", "Client credentials are invalid.");
-                return;
+                var s = clientId;
+                var y = clientSecret;
             }
+
+
+            //var clientValid = await _clientAuthorizationService.ValidateClientAuthorizationSecretAsync(clientId, clientSecret);
+            //if (!clientValid)
+            //{
+            //    //context.Rejected();
+            //    context.SetError("Invalid Client", "Client credentials are invalid.");
+            //    return;
+            //}
             //need to make the client_id available for later security checks
             context.OwinContext.Set<string>("as:client_id", clientId);
             context.OwinContext.Set<string>("as:refresh_token_time", "36000");

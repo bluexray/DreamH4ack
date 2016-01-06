@@ -6,6 +6,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using DH.Authorization.Server.App_Start;
 
 namespace DH.Authorization.Server
 {
@@ -13,6 +14,7 @@ namespace DH.Authorization.Server
     {
         protected void Application_Start()
         {
+            DependencyInjectionConfig.Register();
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
